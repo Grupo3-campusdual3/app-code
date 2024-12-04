@@ -1,35 +1,33 @@
 name: Infraestructures
 on: 
-    push: 
-        branches:
-            -	main
+  push: 
+    branches:
+      - main
 
 jobs:
-    check:
-        runs-on: ubuntu-latest
-        
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v3
-
-            -   name: Run Terraform Validate
-                run: |
-                    terraform validate
-                    echo "estoy en actions"
-
-    deploy:
+  check:
     runs-on: ubuntu-latest
 
     steps:
-        - name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-        - name: Setup Terraform
+      - name: Run Terraform Validate
+        run: |
+          terraform validate
+          echo "estoy en actions"
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
         run: terraform init
 
-        - name: Apply Terraform
+      - name: Apply Terraform
         run: |
           terraform apply -auto-approve
           echo "Deployment completed successfully!"
-    
-    
