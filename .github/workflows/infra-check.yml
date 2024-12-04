@@ -18,15 +18,14 @@ jobs:
           echo "estoy en actions"
 
   deploy:
+    name: Deploy actions
     runs-on: ubuntu-latest
-
+    needs: check
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Terraform
         run: terraform init
-
       - name: Apply Terraform
         run: |
           terraform apply -auto-approve
