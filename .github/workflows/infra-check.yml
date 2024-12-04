@@ -1,3 +1,4 @@
+name: Infraestructures
 on: 
     push: 
         branches:
@@ -16,4 +17,19 @@ jobs:
                     terraform validate
                     echo "estoy en actions"
 
-            
+    deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout code
+        uses: actions/checkout@v3
+
+        - name: Setup Terraform
+        run: terraform init
+
+        - name: Apply Terraform
+        run: |
+          terraform apply -auto-approve
+          echo "Deployment completed successfully!"
+    
+    
