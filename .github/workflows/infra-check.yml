@@ -30,4 +30,4 @@ jobs:
       - name: Apply Terraform
         run: |
           terraform apply -auto-approve
-          echo "Deployment completed successfully!"
+          echo "Deployment completed successfully!!"
